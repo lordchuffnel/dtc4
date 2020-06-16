@@ -11,6 +11,8 @@ django-rest-framework = "*"
 django-cors-headers = "*"
 gunicorn = "*"
 whitenoise = "*"
+psycopg2 = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"
