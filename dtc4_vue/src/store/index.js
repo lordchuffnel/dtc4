@@ -12,7 +12,7 @@ export default new Vuex.Store({
       },
       mutations: {
         getTimecard: (state, el) => {
-          state.timecards = el.data
+          state.timecards.map({...el})
         },
         addTimecard: (state, timecard) => {
           state.timecards.push(timecard)

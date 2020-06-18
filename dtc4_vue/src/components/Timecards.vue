@@ -7,8 +7,6 @@
         <li>{{ t.start_time }}</li>
       </ul>
     </div>
-  
-  
   </div>
 </template>
 
@@ -17,19 +15,11 @@ import { mapActions, mapState } from 'vuex';
 export default {
   name: 'Timecards',
   methods: {
-    ...mapActions([
-      'getTimecardInfo'
-    ])
+    ...mapActions(['getTimecardInfo']),
   },
-  computed: { ...mapState([
-    'timecards',
-    'user',
-    'loading'
-  ]) }
-}
+  computed: { ...mapState(['timecards', 'user', 'loading']) },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>
