@@ -1,7 +1,7 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>Timecards</h1>
-    <div v-for="(t, i) in timecards" :key="i">
+    <div v-for="timecard in timecards" :key="timecard.id">
       <ul>
         <li>{{ t.date }}</li>
         <li>{{ t.start_time }}</li>
@@ -14,6 +14,11 @@
 import { mapActions, mapState } from 'vuex';
 export default {
   name: 'Timecards',
+  data() {
+    return {
+      timecards: [],
+    };
+  },
   methods: {
     ...mapActions(['getTimecardInfo']),
   },
@@ -22,4 +27,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+h1 {
+  font-size: 40px;
+}
+</style>

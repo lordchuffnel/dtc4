@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      hello world
-    </div>
-    <router-view/>
+    <h1>Hello world</h1>
+    <Timecards />
   </div>
 </template>
+
+<script>
+import Timecards from '../src/components/Timecards.vue';
+
+export default {
+  name: 'Home',
+  components: {
+    Timecards,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -16,18 +23,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
