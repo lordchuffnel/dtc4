@@ -73,9 +73,11 @@ DATABASES = {
     }
 }
 
-CORS_HEADERS_WHITELIST = [
-    "http://localhost:8085"
-]
+# CORS_HEADERS_WHITELIST = [
+#     "http://localhost:8085"
+# ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': {

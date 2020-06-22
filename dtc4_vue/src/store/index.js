@@ -11,8 +11,8 @@ export default new Vuex.Store({
     loading: false,
   },
   mutations: {
-    getTimecard: (state, el) => {
-      state.timecards.map({ ...el });
+    setTimecardInfo: (state, el) => {
+      state.timecards = el.data
     },
     addTimecard: (state, timecard) => {
       state.timecards.push(timecard);
@@ -28,20 +28,14 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getTimecardInfo() {
-      axios
-        .get('http://127.0.0.1:8000/api/timecards/', {
-          username: 'frank',
-          password: 'alleyrat'
-        })
-        .then((res) => res.json())
-        .then(res => {
-          this.timecards = res;
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    getTimecards: function ({
+      commit
+    }) {
+      axios.get("http://127.0.0.1:8000/api/timecards/").then(res => {
+        this.timecards = res.data;
+      }).then(el => {
+        commit('setTimecardInfo', el)
+      });
     },
   },
   modules: {},
