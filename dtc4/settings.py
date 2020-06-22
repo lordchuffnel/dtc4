@@ -74,7 +74,7 @@ DATABASES = {
 }
 
 CORS_HEADERS_WHITELIST = [
-    "localhost:8085"
+    "http://localhost:8085"
 ]
 
 # REST_FRAMEWORK = {
