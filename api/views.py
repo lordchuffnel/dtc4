@@ -18,5 +18,9 @@ class UserViewSet(viewsets.ModelViewSet):
 class TimecardViewSet(viewsets.ModelViewSet):
     queryset = Timecard.objects.all()
     serializer_class = TimecardSerializer
-    # authentication_classes = (TokenAuthentication, )
-    # permission_classes = (IsAuthenticated)
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated)
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return Timecard.objects.filter(user=user)
+    

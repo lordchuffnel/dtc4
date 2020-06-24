@@ -24,7 +24,7 @@ export default {
   methods: {
     getTimecards: function() {
       axios.get("http://127.0.0.1:8000/api/timecards/").then(res => {
-        this.timecards = res.data;
+          this.timecards = res.data;
       });
     }
   },
