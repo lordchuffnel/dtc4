@@ -2,7 +2,7 @@
   <div>
     <button @click="logout()">Logout</button>
     <h1>Timecards</h1>
-    <div :token="this.token" class='layout'>
+    <div :token="this.token" class="layout">
       <Item
         v-for="timecard in timecards"
         :key="timecard.id"
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Item from './components/Item.vue';
-import Details from './component/Details.vue';
+import Item from '../components/Item.vue';
+import Details from '../components/Details.vue';
 export default {
   name: 'Timecards',
   components: {
@@ -33,14 +33,9 @@ export default {
   },
   methods: {
     getTimecards: function() {
-      if (this.$cookies.isKey('dtc4-token')) {
-        this.token = this.$cookies.get('dtc4-token');
-        this.$store.dispatch('getTimecards', true).then(() => {
-          this.timecards = this.$store.state.timecards;
-        });
-      } else {
-        this.$router.push('/auth');
-      }
+      this.$store.dispatch('getTimecards', true).then(() => {
+        this.timecards = this.$store.state.timecards;
+      });
     },
     timecardClicked(event) {
       this.selectedTimecard = this.timecards.find(
@@ -53,7 +48,12 @@ export default {
     },
   },
   mounted() {
-    this.getTimecards();
+    if (this.$cookies.isKey('dtc4-token')) {
+      this.token = this.$cookies.get('dtc4-token');
+      this.getTimecards();
+    } else {
+      this.$router.push('/auth');
+    }
   },
   created() {
     // this.getTimecards();

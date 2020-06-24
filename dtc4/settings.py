@@ -73,7 +73,7 @@ DATABASES = {
     }
 }
 
-CORS_HEADERS_WHITELIST = [
+CORS_ORIGIN_WHITELIST = [
     "http://localhost:8085"
 ]
 

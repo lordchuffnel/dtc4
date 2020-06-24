@@ -6,9 +6,9 @@
 
 <script>
 export default {
-  name: "Item",
-  props = ['timecard']
-}
+  name: 'Item',
+  props: ['timecard'],
+};
 </script>
 
 <style scoped>

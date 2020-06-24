@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='auth-container'>
     <label for="username">User name</label><br />
     <input placeholder="username" id="username" v-model="username" /><br />
     <label for="password">Password</label><br />
@@ -9,7 +9,7 @@
       v-model="password"
       type="password"
     /><br />
-    <button @click="login()" v-if="loginMode=true">Login</button>
+    <button @click="login()" v-if="loginMode">Login</button>
     <button @click="register()" v-else>Register</button>
     <p @click="loginMode = false" v-if="loginMode">
       Don't have an account yet? Register Here
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+// import axios from 'axios';
 export default {
   name: 'Auth',
   data() {
@@ -35,7 +36,7 @@ export default {
   },
   methods: {
     login() {
-      fetch(`http://127.0.0.1:8000/auth/`, {
+      fetch('http://127.0.0.1:8000/auth/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ export default {
         .then((res) => res.json())
         .then((res) => {
           this.$cookies.set('dtc4-token', res.token, '30d');
-          this.$router.push('/');
+          this.$router.push('/')
         })
         .catch((err) => console.log(err));
     },
@@ -71,3 +72,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.auth-container {
+  width: 50%;
+  margin: 50px 25%;
+}
+</style>

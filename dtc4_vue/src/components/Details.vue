@@ -9,6 +9,5 @@
 export default {
   name: 'Details',
   props: ['timecard'],
-
 };
 </script>
