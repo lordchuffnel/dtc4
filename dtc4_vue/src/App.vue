@@ -1,7 +1,12 @@
 <template>
   <div id="app">
+    <div class="nav">
+      <router-link to='/'>Home</router-link>
+      <router-link to='/auth'>Login</router-link>
+    </div>
     <h1>Hello world</h1>
     <Timecards />
+    <router-view />
   </div>
 </template>
 
