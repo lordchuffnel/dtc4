@@ -9,10 +9,11 @@ export default new Vuex.Store({
     timecards: [],
     user: null,
     loading: false,
+    timecard: {},
   },
   mutations: {
     setTimecardInfo: (state, el) => {
-      state.timecards = el.data
+      state.timecards = el;
     },
     addTimecard: (state, timecard) => {
       state.timecards.push(timecard);
@@ -28,13 +29,14 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getTimecards: function ({
-      commit
-    }) {
-      axios.get("http://127.0.0.1:8000/api/timecards/").then(res => {
-        this.timecards = res.data;
-      }).then(el => {
-        commit('setTimecardInfo', el)
+    getTimecards: function({ commit, state }, force) {
+      if (state.timecards.length && !force) {
+        return state.timecards;
+      }
+      axios.get('http://127.0.0.1:8000/api/timecards/').then((res) => {
+        if (res && res.data) {
+          commit('setTimecardInfo', res.data);
+        }
       });
     },
   },

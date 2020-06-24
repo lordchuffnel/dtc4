@@ -1,25 +1,20 @@
 <template>
   <div id="app">
     <div class="nav">
-      <router-link to='/'>Home</router-link>
-      <router-link to='/auth'>Login</router-link>
+      <router-view />
     </div>
-    <h1>Hello world</h1>
-    <Timecards />
-    <router-view />
   </div>
 </template>
 
-<script>
-import Timecards from '../src/components/Timecards.vue';
+// <script>
+// import Timecards from '../src/components/Timecards.vue';
 
-export default {
-  name: 'Home',
-  components: {
-    Timecards,
-  },
-};
-</script>
+// export default {
+//   components: {
+//     Timecards,
+//   },
+// };
+// </script>
 
 <style>
 #app {

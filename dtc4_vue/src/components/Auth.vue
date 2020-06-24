@@ -9,7 +9,7 @@
       v-model="password"
       type="password"
     /><br />
-    <button @click="login()" v-if="loginMode">Login</button>
+    <button @click="login()" v-if="loginMode=true">Login</button>
     <button @click="register()" v-else>Register</button>
     <p @click="loginMode = false" v-if="loginMode">
       Don't have an account yet? Register Here

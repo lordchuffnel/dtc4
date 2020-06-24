@@ -2,48 +2,61 @@
   <div>
     <button @click="logout()">Logout</button>
     <h1>Timecards</h1>
-    <div v-for="timecard in timecards" :key="timecard.id" :token="this.token">
-      <ul>
-        <li>{{ timecard.date }}</li>
-        <li>{{ timecard.user }}</li>
-      </ul>
+    <div :token="this.token" class='layout'>
+      <Item
+        v-for="timecard in timecards"
+        :key="timecard.id"
+        :timecard="timecard"
+        @timecard-clicked="timecardClicked($event)"
+      />
     </div>
+    <Details :timecard="selectedTimecard" />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Item from './components/Item.vue';
+import Details from './component/Details.vue';
 export default {
   name: 'Timecards',
+  components: {
+    Item,
+    Details,
+  },
   data() {
     return {
       timecards: [],
       tc: null,
       token: '',
+      selectedTimecard: null,
     };
   },
   methods: {
     getTimecards: function() {
-      const options = {
-        headers: { Authorization: `Token ${this.token}` },
-      };
-      axios.get('http://127.0.0.1:8000/api/timecards/', options).then((res) => {
-        this.timecards = res.data;
-      });
+      if (this.$cookies.isKey('dtc4-token')) {
+        this.token = this.$cookies.get('dtc4-token');
+        this.$store.dispatch('getTimecards', true).then(() => {
+          this.timecards = this.$store.state.timecards;
+        });
+      } else {
+        this.$router.push('/auth');
+      }
+    },
+    timecardClicked(event) {
+      this.selectedTimecard = this.timecards.find(
+        (timecard) => timecard.id === event.id
+      );
     },
     logout() {
       this.$cookies.remove('dtc4-token');
       this.$router.push('/auth');
     },
   },
-
+  mounted() {
+    this.getTimecards();
+  },
   created() {
-    if (this.$cookies.isKey('dtc4-token')) {
-      this.token = this.$cookies.get('dtc4-token');
-      this.getTimecards();
-    } else {
-      this.$router.push('/auth');
-    }
+    // this.getTimecards();
   },
 };
 </script>
@@ -52,5 +65,9 @@ export default {
 <style scoped>
 h1 {
   font-size: 40px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 </style>
