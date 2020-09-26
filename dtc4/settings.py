@@ -73,17 +73,17 @@ DATABASES = {
     }
 }
 
-# CORS_HEADERS_WHITELIST = [
-#     "http://localhost:8085"
-# ]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8085"
+]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': {
-#         'rest_framework.permissions.IsAuthenticated',
-#     }
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': {
+        'rest_framework.permissions.IsAuthenticated',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

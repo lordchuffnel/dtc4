@@ -4,6 +4,7 @@ from datetime import datetime, date, timedelta
 
 
 
+
 class Timecard(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, db_column="user", to_field="username"
